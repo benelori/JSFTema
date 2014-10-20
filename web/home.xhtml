@@ -25,6 +25,7 @@
     </h:panelGroup>
     <h:panelGroup rendered="#{userManager.loggedIn}">
         <p>Welcome, #{userManager.user.firstName} #{userManager.user.lastName}</p>
+        <h:link value="My Account" outcome="myAccount.xhtml"></h:link>
         <h:form>
             <h:commandButton value="Logout" action="#{userManager.logout}" />
         </h:form>
