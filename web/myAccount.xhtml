@@ -14,5 +14,9 @@
     Last name: #{userManager.user.lastName} <br />
     Address: #{userManager.user.address} <br />
     Timezone: #{userManager.getTimeZone()}
+    <a href="home.xhtml">Back to Home page</a>
+    <h:form>
+        <h:commandButton value="Logout" action="#{userManager.logout}" />
+    </h:form>
 </h:body>
 </html>

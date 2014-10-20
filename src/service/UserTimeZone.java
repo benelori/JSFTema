@@ -1,5 +1,8 @@
 package service;
 
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.RequestScoped;
+import javax.faces.bean.SessionScoped;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.Serializable;
@@ -10,10 +13,12 @@ import java.net.URL;
 /**
  * Created by lbene on 20.10.2014.
  */
+@ManagedBean(name = "userTimeZone", eager = true)
+@SessionScoped
 public class UserTimeZone implements Serializable{
 
     private static final long serialVersionUID = 1L;
-    private static final String serviceUrl = "http://localhost:8080/TimeZone_war_exploded/TimeZone";
+    private static final String serviceUrl = "http://localhost:8080/TimeZoneService_war_exploded/TimeZone";
 
     public String getTimeZone(int coordinateX, int coordinateY) {
         try {

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:tp="http://java.sun.com/jsf/composite" xmlns:ui="http://java.sun.com/jsf/facelets">
+<h:head>
+    <title>Admin Page</title>
+</h:head>
+<h:body>
+   This is the admin page.
+    <h:dataTable value="#{userManager.allUsers}" var="userData">
+        <h:column>
+            #{userData.firstName}
+        </h:column>
+        <h:column>
+            #{userData.lastName}
+        </h:column>
+        <h:column>
+            <h:form>
+                <h:commandButton value="Edit" action="#{userManager.getUserById(userData.id)}" />
+            </h:form>
+        </h:column>
+    </h:dataTable>
+    <a href="home.xhtml">Back to Home page</a>
+    <h:form>
+        <h:commandButton value="Logout" action="#{userManager.logout}" />
+    </h:form>
+</h:body>
+</html>
