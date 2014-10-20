@@ -2,6 +2,7 @@ package frontend.controller;
 
 import frontend.entity.User;
 import persistence.UserDAO;
+import service.UserTimeZone;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
@@ -14,6 +15,7 @@ public class UserManager {
     private String username;
     private String password;
     private User user;
+    UserTimeZone zone = new UserTimeZone();
 
     public String login() {
 
@@ -49,5 +51,9 @@ public class UserManager {
 
     public User getUser() {
         return user;
+    }
+
+    public String getTimeZone() {
+        return zone.getTimeZone(user.getCoordinateX(), user.getCoordinateY());
     }
 }
