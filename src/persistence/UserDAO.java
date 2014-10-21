@@ -54,16 +54,49 @@ public class UserDAO {
         try {
             Statement s = DBConnection.getInstance().getC().createStatement();
             String query = "UPDATE `testdb`.`users` "+
-                    "SET `first_name` = '"+user.getFirstName()+"', `last_name` = '"+user.getLastName()+"', "+
+                    "SET `firstname` = '"+user.getFirstName()+"', `lastname` = '"+user.getLastName()+"', "+
                     "`username` = '"+user.getUserName()+"', `password` = '"+user.getPassword()+"', `address` = '"+user.getAddress()+"', "+
                     "`coordinate_x` = '"+user.getCoordinateX()+"', `coordinate_y` = '"+user.getCoordinateY()+
                     "' WHERE `users`.`id` = "+user.getId()+";";
-            success = true;
             s.execute(query);
+            success = true;
         } catch (SQLException e) {
             e.printStackTrace();
         }
         return success;
+    }
+
+    public boolean createUser(User user) {
+        boolean success = false;
+        try {
+            Statement s = DBConnection.getInstance().getC().createStatement();
+            String query = "INSERT INTO `testdb`.`users`"+
+                    " (`firstname`, `lastname`, `username`, `password`, `address`, `coordinate_x`, `coordinate_y`, `createdAt`)"+
+                    " VALUES ('"+user.getFirstName()+"', '"+user.getLastName()+"', '"+user.getUserName()+"', '"+user.getPassword()+"', '"+
+                    user.getAddress()+"', '"+user.getCoordinateX()+"', '"+user.getCoordinateY()+"', CURRENT_TIMESTAMP);";
+            s.execute(query);
+            success = true;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return success;
+    }
+
+    public User getLastAddedUser() {
+        User user = null;
+        try {
+            Statement s = DBConnection.getInstance().getC().createStatement();
+            ResultSet rs = s.executeQuery("SELECT * FROM `users` ORDER BY `createdAt` DESC LIMIT 0 , 1");
+            if (!rs.equals(null)) {
+                user = new User();
+                while (rs.next()) {
+                    setUserProperties(user, rs);
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return user;
     }
 
     private void setUserProperties(User user, ResultSet rs) throws SQLException {

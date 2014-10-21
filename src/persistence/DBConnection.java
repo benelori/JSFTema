@@ -14,7 +14,7 @@ public class DBConnection {
 
     private DBConnection() {
         String url = "jdbc:mysql://localhost:3306/";
-        String dbName = "testdb";
+        String dbName = "testdb?allowMultiQueries=true";
         String userName = "root";
         String password = "";
         try {
