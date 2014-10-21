@@ -19,26 +19,29 @@
             <h:inputSecret styleClass="input" value="#{userManager.editableUser.password}"/>
         </div>
         <div class="firstname">
-            <div class="label">User Name</div>
+            <div class="label">First Name</div>
             <h:inputText styleClass="input" value="#{userManager.editableUser.firstName}"/>
         </div>
         <div class="lastname">
-            <div class="label">User Name</div>
+            <div class="label">Last Name</div>
             <h:inputText styleClass="input" value="#{userManager.editableUser.lastName}"/>
         </div>
         <div class="address">
-            <div class="label">User Name</div>
+            <div class="label">Address</div>
             <h:inputText styleClass="input" value="#{userManager.editableUser.address}"/>
         </div>
         <div class="latitude">
-            <div class="label">User Name</div>
+            <div class="label">Latitude</div>
             <h:inputText styleClass="input" value="#{userManager.editableUser.coordinateX}"/>
         </div>
         <div class="longitude">
-            <div class="label">User Name</div>
+            <div class="label">Longitude</div>
             <h:inputText styleClass="input" value="#{userManager.editableUser.coordinateY}"/>
         </div>
-        <h:commandButton value="Edit" action="#{userManager.editUser}" />
+        <h:panelGroup>
+            <h:commandButton rendered="#{userManager.operation == 'edit'}" value="Edit" action="#{userManager.editUser}" />
+            <h:commandButton rendered="#{userManager.operation == 'add'}" value="Add" action="#{userManager.createUser}" />
+        </h:panelGroup>
     </h:form>
     <a href="admin.xhtml">Back to Admin page</a>
     <a href="home.xhtml">Back to Home page</a>

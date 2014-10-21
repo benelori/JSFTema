@@ -14,6 +14,9 @@ import java.util.List;
 @SessionScoped
 public class UserManager {
 
+    private static final String EDIT_OPERATION = "edit";
+    private static final String ADD_OPERATION = "add";
+
     @ManagedProperty(value = "#{userDao}")
     private UserDAO users;
 
@@ -25,6 +28,7 @@ public class UserManager {
     private User user;
     private List<User> allUsers;
     private User editableUser;
+    private String operation;
 
     public String login() {
         user = users.getUserData(username, password);
@@ -80,6 +84,7 @@ public class UserManager {
     }
 
     public String getUserById(int id) {
+        setOperation(EDIT_OPERATION);
         for (User userById : allUsers) {
             if (userById.getId() == id) {
                 setEditableUser(userById);
@@ -105,6 +110,26 @@ public class UserManager {
         return returnPage;
     }
 
+    public String addUserForm() {
+        setOperation(ADD_OPERATION);
+        setEditableUser(new User());
+        return LinkConstants.EDIT_USER_PAGE;
+    }
+
+    public String createUser() {
+        String returnPage = LinkConstants.EDIT_USER_PAGE;
+        boolean result = users.createUser(editableUser);
+        if (result) {
+            User user = users.getLastAddedUser();
+            if (user != null) {
+                returnPage = LinkConstants.ADMIN_PAGE;
+                allUsers.add(user);
+            }
+        }
+
+        return returnPage;
+    }
+
     public UserDAO getUsers() {
         return users;
     }
@@ -119,5 +144,13 @@ public class UserManager {
 
     public void setZone(UserTimeZone zone) {
         this.zone = zone;
+    }
+
+    public String getOperation() {
+        return operation;
+    }
+
+    public void setOperation(String operation) {
+        this.operation = operation;
     }
 }

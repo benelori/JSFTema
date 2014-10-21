@@ -23,6 +23,9 @@
             </h:form>
         </h:column>
     </h:dataTable>
+    <h:form>
+        <h:commandButton value="Add User" action="#{userManager.addUserForm}" />
+    </h:form>
     <a href="home.xhtml">Back to Home page</a>
     <h:form>
         <h:commandButton value="Logout" action="#{userManager.logout}" />
