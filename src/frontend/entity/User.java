@@ -15,11 +15,7 @@ public class User {
     public String address;
     public int coordinateX;
     public int coordinateY;
-
-    public User(String userName, String password) {
-        this.userName = userName;
-        this.password = password;
-    }
+    public int admin;
 
     public int getId() {
         return id;
@@ -91,5 +87,13 @@ public class User {
 
     public void setCoordinateY(int coordinateY) {
         this.coordinateY = coordinateY;
+    }
+
+    public int getAdmin() {
+        return admin;
+    }
+
+    public void setAdmin(int admin) {
+        this.admin = admin;
     }
 }

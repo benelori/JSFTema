@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:tp="http://java.sun.com/jsf/composite" xmlns:ui="http://java.sun.com/jsf/facelets">
+<h:head>
+    <title>Admin Page</title>
+</h:head>
+<h:body>
+    <h:form>
+        <div class="username">
+            <div class="label">User Name</div>
+            <h:inputText styleClass="input" value="#{userManager.editableUser.userName}"/>
+        </div>
+        <div class="password">
+            <div class="label">Password</div>
+            <h:inputSecret styleClass="input" value="#{userManager.editableUser.password}"/>
+        </div>
+        <div class="firstname">
+            <div class="label">User Name</div>
+            <h:inputText styleClass="input" value="#{userManager.editableUser.firstName}"/>
+        </div>
+        <div class="lastname">
+            <div class="label">User Name</div>
+            <h:inputText styleClass="input" value="#{userManager.editableUser.lastName}"/>
+        </div>
+        <div class="address">
+            <div class="label">User Name</div>
+            <h:inputText styleClass="input" value="#{userManager.editableUser.address}"/>
+        </div>
+        <div class="latitude">
+            <div class="label">User Name</div>
+            <h:inputText styleClass="input" value="#{userManager.editableUser.coordinateX}"/>
+        </div>
+        <div class="longitude">
+            <div class="label">User Name</div>
+            <h:inputText styleClass="input" value="#{userManager.editableUser.coordinateY}"/>
+        </div>
+        <h:commandButton value="Edit" action="#{userManager.editUser}" />
+    </h:form>
+    <a href="admin.xhtml">Back to Admin page</a>
+    <a href="home.xhtml">Back to Home page</a>
+    <h:form>
+        <h:commandButton value="Logout" action="#{userManager.logout}" />
+    </h:form>
+</h:body>
+</html>
